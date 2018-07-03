@@ -33,7 +33,7 @@ public class ThreadsTest {
 			List<DataToProcess> listData = new ArrayList<DataToProcess>();
 			listData.add(new DataToProcess("Good Luck!"));
 			listData.add(new DataToProcess("Go man!"));
-			listData.add(new DataToProcess("Beaty!"));
+			listData.add(new DataToProcess("Beauty!"));
 			Iterator<DataToProcess> it = listData.iterator();
 
 			while (it.hasNext()) {
@@ -89,24 +89,24 @@ public class ThreadsTest {
 				listaDTOsFinalizados.clear();
 				listData.clear();
 			}
-			LOGGER.info("Efetuando shutdown do pool de threads...");
+			LOGGER.info("Shuting down the threads pool...");
 			threadsPool.shutdown();
 			LOGGER.info("Shutdown OK!");
-			LOGGER.info("Numero Tarefas com Erro=[" + numTarefasErro + "] Numero Tarefas com Sucesso=["
+			LOGGER.info("Tasks with errors=[" + numTarefasErro + "] Success Tasks=["
 					+ numTarefasSucesso + "]");
 			threadsPool.awaitTermination(1, TimeUnit.MINUTES);
 			final DateTime dtHoraFim = new DateTime();
-			LOGGER.info(" Data/Hora de inicio:    "
-					+ DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss").print(dtHoraInicio) + " Data/Hora de fim:       "
+			LOGGER.info(" Begin Date/Time:    "
+					+ DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss").print(dtHoraInicio) + " End Date/Time:       "
 					+ DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss").print(dtHoraFim));
 		} catch (Exception e) {
 			if (threadsPool != null) {
 				LOGGER.severe(
-						"[CENSO-MATRICULA-INICIAL-SERVICE]: Efetuando shutdown do pool de threads... " + e.toString());
+						"Shutting down the threads pool... " + e.toString());
 				threadsPool.shutdown();
-				LOGGER.info("[CENSO-MATRICULA-INICIAL-SERVICE]: Shutdown OK!");
+				LOGGER.info("Shutdown OK!");
 			} else {
-				LOGGER.severe("[CENSO-MATRICULA-INICIAL-SERVICE]: Excecao ocorrida! " + e.toString());
+				LOGGER.severe(" Error: " + e.toString());
 			}
 		} finally {
 			if (threadsPool != null) {
@@ -114,15 +114,13 @@ public class ThreadsTest {
 					threadsPool = null;
 				} else {
 					if (threadsPool.isShutdown() && !threadsPool.isTerminated()) {
-						LOGGER.info(
-								"[CENSO-MATRICULA-INICIAL-SERVICE]: Efetuando shutdown do pool de threads... threadsPool.isShutdown() == true && threadsPool.isTerminated() == false");
+						LOGGER.info("Shuting down the threads pool...");
 						threadsPool.shutdownNow();
-						LOGGER.info("CENSO-MATRICULA-INICIAL-SERVICE]: Shutdown OK!");
+						LOGGER.info("Shutdown OK!");
 					} else {
-						LOGGER.info(
-								"[CENSO-MATRICULA-INICIAL-SERVICE]: Efetuando shutdown do pool de threads... threadsPool.isShutdown() == false && threadsPool.isTerminated() == true");
+						LOGGER.info("Shuting down the threads pool...");
 						threadsPool.shutdown();
-						LOGGER.info("[CENSO-MATRICULA-INICIAL-SERVICE]: Shutdown OK!");
+						LOGGER.info("Shutdown OK!");
 					}
 				}
 			}
