@@ -70,8 +70,9 @@ public class LessonEighteen{
 		try{
 			Thread.sleep(20000);
 		}
-		catch(InterruptedException e)
-		{}
+		catch(InterruptedException e){
+			
+		}
 		
 		// Shuts down all threads in the pool
 		eventPool.shutdown();

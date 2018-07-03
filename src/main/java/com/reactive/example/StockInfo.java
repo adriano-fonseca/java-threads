@@ -6,6 +6,9 @@ import java.util.Random;
 
 import org.junit.experimental.theories.Theories;
 
+import rx.functions.Action0;
+import rx.functions.Action1;
+
 public class StockInfo {
 	
 	private static final Map<String, StockInfo> myMap;
@@ -83,6 +86,10 @@ public class StockInfo {
 	
 	public static void onNext(StockInfo stock){
 		
+	}
+	
+	public static void doOnCompleted(Action0 act) {
+		act.call();
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-package thread.process;
+package thread.process.basic;
 
 //You can use the Runnable interface instead of
 //wasting your 1 class extension.

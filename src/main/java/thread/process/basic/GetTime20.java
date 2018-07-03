@@ -1,4 +1,4 @@
-package thread.process;
+package thread.process.basic;
 
 // By using threads you can execute multiple blocks
 // of code at the same time. This program will output 

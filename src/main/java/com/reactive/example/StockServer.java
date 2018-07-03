@@ -25,6 +25,26 @@ public class StockServer {
 			}
 			//subscriber.onCompleted();
 		});
+	}
+		
+		public  static Observable<StockInfo> getFeed2(List<String> symbols){
+			return Observable.create(subscriber -> {
+				int count = 0;
+				while(count < 10) {
+					try {
+					symbols.stream()
+						.map(StockInfo::fetch)
+						.forEach(subscriber::onNext);
+					count++;
+					//Generate a random error
+					//if(Math.random() > 0.5) throw new RuntimeException("Ops!!");
+					UtilThread.sleep(1000);
+					}catch (Exception e) {
+						subscriber.onError(e);
+					}
+				}
+				subscriber.onCompleted();
+			});
 		
 	}
 	

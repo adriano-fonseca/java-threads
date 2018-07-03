@@ -1,4 +1,4 @@
-package thread.process;
+package thread.process.basic;
 
 public class LessonSeventeen{
 	
